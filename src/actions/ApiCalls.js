@@ -4,6 +4,8 @@ import axios from 'axios';
 export const GET_POSTS = 'GET_POSTS';
 export const ADD_POST = 'ADD_POST';
 
+export const GET_COMMENTS = ''
+
 export const getPosts = () => {
     return (dispatch) => {
         axios.get('http://localhost:8082/api/posts')
@@ -24,6 +26,21 @@ export const addPost = (body) => {
         axios.post("http://localhost:8082/api/posts", body)
         .then(response=>{
             dispatch(getPosts())
+        })
+        .catch(error=>{
+            console.log(error);
+        })
+    }
+}
+
+export const getComments = () => {
+    return (dispatch) => {
+        axios.get('http://localhost:8082/api/comments')
+        .then(response=>{
+            dispatch({ 
+                type: GET_COMMENTS,
+                payload: response.data
+            })
         })
         .catch(error=>{
             console.log(error);

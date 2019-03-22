@@ -3,19 +3,23 @@ import '../../css/Login.css';
 
 class Login extends Component {
     constructor(props) {
+        
         super(props);
         this.state = {
-            Admin: [{username: "Admin", password: "123"},{Admin: false}],
-            User: ''
+            
+            Admin: {username: "Admin", password: "123"},
+            User: '',
+            username: '',
+            password: ''
         }
     }
     
     isAdmin = () => {
-        if (this.state.User === this.state.Admin[0].username && this.state.Admin[0].password === '123'){
+        if (this.state.username === this.state.Admin.username && this.state.Admin.password == this.state.password){
             localStorage.setItem('Admin', 'true')
             localStorage.setItem('username', 'Admin')
         }else{
-            localStorage.setItem('username', this.state.User)
+            localStorage.setItem('username', this.state.username)
         }
     }
 
@@ -27,18 +31,18 @@ class Login extends Component {
       
       onSubmit = (event) => {
         event.preventDefault();
-      
+        console.log(this.state.username, this.state.password)
         this.props.history.push('/Posts')
       }
 
-    render() { 
+    render() {
         return ( 
         <div className="main">
             <h1 style={{textAlign: "center", marginTop:"50%",paddingTop: "30px", marginBottom: "-20px"}}>Saw-it</h1>
             <p className="sign" align="center">Sign in</p>
             <form className="form1" onSubmit={this.onSubmit}>
-                <input className="un" type="text" align="center" placeholder="Username" onChange={this.change}/>
-                <input className="pass" type="text" align="center" placeholder="Password" onChange={this.change}/>
+                <input name ="username" className="un" type="text" align="center" placeholder="Username" onChange={this.change}/>
+                <input name ="password" className="pass" type="text" align="center" placeholder="Password" onChange={this.change}/>
 
                 <button type="submit" className="submit" align="center">Sign in</button>
             </form>

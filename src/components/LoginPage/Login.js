@@ -6,15 +6,14 @@ class Login extends Component {
         
         super(props);
         this.state = {
-            
             Admin: {username: "Admin", password: "123"},
-            User: '',
             username: '',
             password: ''
         }
     }
     
     isAdmin = () => {
+        console.log('in here')
         if (this.state.username === this.state.Admin.username && this.state.Admin.password == this.state.password){
             localStorage.setItem('Admin', 'true')
             localStorage.setItem('username', 'Admin')
@@ -23,7 +22,7 @@ class Login extends Component {
         }
     }
 
-    change = (event) =>{
+      change = (event) =>{
         this.setState({
            [event.target.name] : event.target.value
         })
@@ -31,7 +30,7 @@ class Login extends Component {
       
       onSubmit = (event) => {
         event.preventDefault();
-        console.log(this.state.username, this.state.password)
+
         this.props.history.push('/Posts')
       }
 
@@ -44,7 +43,7 @@ class Login extends Component {
                 <input name ="username" className="un" type="text" align="center" placeholder="Username" onChange={this.change}/>
                 <input name ="password" className="pass" type="text" align="center" placeholder="Password" onChange={this.change}/>
 
-                <button type="submit" className="submit" align="center">Sign in</button>
+                <button type="submit" className="submit" align="center" onClick={this.isAdmin}>Sign in</button>
             </form>
         </div> 
         )

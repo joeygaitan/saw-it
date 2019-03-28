@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
+import Header from '../../HigherOrderComponents/Header'
 import { connect} from 'react-redux';
 import { getPosts, getComments } from '../../../actions/ApiCalls';
 import '../../../css/Posts.css'
@@ -59,18 +60,28 @@ class Posts extends Component {
 
     }
 
+    postVotes = () => {
+        
+    }
+
     render() { 
         console.log(this.props.posts, this.state.username);
         
         return ( 
             <div>
-                
+                <Header username={this.state.username}/>
                 <div className="container">
+                <div className='buttonContainer'>
                 <button className="latestButton">Latest Posts</button>
                 <button className="addButton">Add Post</button>
+                </div>
                 
                     {this.state.posts.map((post, id)=>{
-                        return (<div className='item'><p>{post.title}</p></div>)
+                        return (<div className='item'>
+                        <h1>{post.title}|<button></button>{}</h1>
+                        <img src={post.img_url}/>
+                        <p>{post.content}</p>
+                        </div>)
                     })}
                 </div>
             </div>

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import '../../css/Header.css'
+import '../../css/Header.css';
+import {withRouter} from 'react-router-dom';
 class Header extends Component {
     constructor(props) {
         super(props);
@@ -8,15 +9,15 @@ class Header extends Component {
 
     logout = () => {
         localStorage.removeItem('username')
-        localStorage.setItem('Admin', 'false')
+        localStorage.removeItem('Admin')
 
-        this.props.history.location.push()
+        this.props.history.push('/')
     }
 
     render() { 
         return (
         <div class="topnav">
-            <p>Welcome, {this.props.username}!</p>
+            <h1>Welcome, {this.props.username}!</h1>
             
             <p onClick={this.logout}>Logout</p>
         </div>
@@ -24,4 +25,4 @@ class Header extends Component {
     }
 }
  
-export default Header;
+export default withRouter(Header);

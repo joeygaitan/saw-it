@@ -33,6 +33,30 @@ export const addPost = (body) => {
     }
 }
 
+export const increaseVote = (id) => {
+    return (dispatch) => {
+        axios.get(`/posts/votes/increase/:${id}`)
+        .then(response=>{
+                dispatch(getPosts())
+        })
+        .catch(error=>{
+            console.log(error)
+        })
+    }
+}
+
+export const descreaseVote = (id) => {
+    return (dispatch) => {
+        axios.get(`/posts/votes/increase/:${id}`)
+        .then(response=>{
+            dispatch(getPosts())
+        })
+        .catch(error=>{
+            console.log(error);
+        })
+    }
+}
+
 export const getComments = () => {
     return (dispatch) => {
         axios.get('http://localhost:8082/api/comments')

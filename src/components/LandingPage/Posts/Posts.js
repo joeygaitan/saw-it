@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import Header from '../../HigherOrderComponents/Header'
 import { connect} from 'react-redux';
-import { getPosts, getComments, increaseVote, descreaseVote } from '../../../actions/ApiCalls';
+import { getPosts, addPost, getComments, addComment, increaseVote, descreaseVote } from '../../../actions/ApiCalls';
 import '../../../css/Posts.css'
+import AddPost from './AddPost'
 
 
 class Posts extends Component {
@@ -15,7 +16,16 @@ class Posts extends Component {
             username: '',
             posts: [...this.props.posts],
             addPost: false,
-            showMessages: false
+            showMessages: false,
+            commentBody:{
+                body:""
+            },
+            postBody: {
+                author: "",
+                content:"",
+                title: "",
+                img_url: ""
+            }
          }
     }
 
@@ -66,6 +76,7 @@ class Posts extends Component {
                 <div className='buttonContainer'>
                 <button className="latestButton">Latest Posts</button>
                 <button className="addButton">Add Post</button>
+                <AddPost addPost={this.props.addPost}/>
                 </div>
                 
                     {this.state.posts.map((post,index)=>{
@@ -90,7 +101,12 @@ const mapStateToProps = state => ({
   
   const mapDispatchToProps = dispatch =>
     bindActionCreators({
-      getPosts: getPosts, getComments: getComments
+      getPosts: getPosts,
+      addPost: addPost,
+      getComments: getComments,
+      addComment: addComment,
+      increaseVote: increaseVote,
+      descreaseVote: descreaseVote
     }, dispatch)
  
 export default connect(mapStateToProps, mapDispatchToProps)(Posts);

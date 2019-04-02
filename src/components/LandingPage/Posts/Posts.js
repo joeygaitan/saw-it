@@ -19,12 +19,6 @@ class Posts extends Component {
             showMessages: false,
             commentBody:{
                 body:""
-            },
-            postBody: {
-                author: "",
-                content:"",
-                title: "",
-                img_url: ""
             }
          }
     }
@@ -66,7 +60,12 @@ class Posts extends Component {
     addComments = () => {
 
     }
-
+    
+    add =() =>{
+        this.setState({
+            addPost: true
+        })
+    }
     render() { 
         console.log(this.props);
         return ( 
@@ -75,18 +74,18 @@ class Posts extends Component {
                 <div className="container">
                 <div className='buttonContainer'>
                 <button className="latestButton">Latest Posts</button>
-                <button className="addButton">Add Post</button>
-                <AddPost addPost={this.props.addPost}/>
+                <button className="addButton" ifClicked={this.add}>Add Post</button>
+                {this.state.addPost ? <AddPost addPost={this.props.addPost}/>: null}
                 </div>
                 
                     {this.state.posts.map((post,index)=>{
                         return (<div className='item'>
-                        <h1>{post.title}|<button></button>{post.votes}{post.votes >= 0 ?<button>hello</button>: null}</h1>
                         <img src={post.img_url}/>
+                        <h1>{post.title} | <img src="../../../images/svg/up-arrow.svg"onClick={()=>this.props.increaseVote(index)}/> {post.votes} {post.votes >= 0 ?<img src="../../../images/svg/arrow-down-sign-to-navigate.svg" onClick={()=>this.props.descreaseVote(index)}/>: null}</h1>
                         <p>{post.content}</p>
-                        <li>
-                        {this.props.comments.map((comment, ind) => { return ind === index? <ol>{comment.content}</ol> : null })}
-                        </li>
+                        <ul>
+                        {this.props.comments.map((comment, ind) => { return ind === index? <li>{comment.content}</li> : null })}
+                        </ul>
                         </div>)
                     })}
                 </div>

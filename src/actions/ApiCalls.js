@@ -35,8 +35,9 @@ export const addPost = (body) => {
 
 export const increaseVote = (id) => {
     return (dispatch) => {
-        axios.get(`/posts/votes/increase/:${id}`)
+        axios.get(`http://localhost:8082/api/posts/votes/increase/${id}`)
         .then(response=>{
+            console.log(response)
                 dispatch(getPosts())
         })
         .catch(error=>{
@@ -47,7 +48,7 @@ export const increaseVote = (id) => {
 
 export const descreaseVote = (id) => {
     return (dispatch) => {
-        axios.get(`/posts/votes/increase/${id}`)
+        axios.get(`http://localhost:8082/api/posts/votes/increase/${id}`)
         .then(response=>{
             dispatch(getPosts())
         })

@@ -61,27 +61,28 @@ class Posts extends Component {
 
     }
     
-    add =() =>{
+    addNewPost = () =>{
+        console.log('in Here')
+        let value = this.state.addPost
         this.setState({
-            addPost: true
+            addPost: !value
         })
     }
-    render() { 
-        console.log(this.props);
+    render() {
         return ( 
             <div>
                 <Header username={this.state.username}/>
                 <div className="container">
                 <div className='buttonContainer'>
                 <button className="latestButton">Latest Posts</button>
-                <button className="addButton" ifClicked={this.add}>Add Post</button>
+                <button className="addButton" ifClicked={()=>this.addNewPost()}>Add Post</button>
                 {this.state.addPost ? <AddPost addPost={this.props.addPost}/>: null}
                 </div>
                 
                     {this.state.posts.map((post,index)=>{
                         return (<div className='item'>
                         <img src={post.img_url}/>
-                        <h1>{post.title} | <img src="../../../images/svg/up-arrow.svg"onClick={()=>this.props.increaseVote(index)}/> {post.votes} {post.votes >= 0 ?<img src="../../../images/svg/arrow-down-sign-to-navigate.svg" onClick={()=>this.props.descreaseVote(index)}/>: null}</h1>
+                        <h1>{post.title} | <img src="../../../images/svgs/up-arrow.svg" onClick={()=>this.props.increaseVote(index)}/> {post.votes} {post.votes >= 0 ?<img src="../../../images/svgs/arrow-down-sign-to-navigate.svg" onClick={()=>this.props.descreaseVote(index)}/>: null}</h1>
                         <p>{post.content}</p>
                         <ul>
                         {this.props.comments.map((comment, ind) => { return ind === index? <li>{comment.content}</li> : null })}

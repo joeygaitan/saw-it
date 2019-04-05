@@ -52,6 +52,7 @@ class AddPost extends Component {
                             <label>published</label>
                             <input name ="published" type="text" className="" value={this.state.published} onChange={this.onUpdate}></input>
                         </div>
+                        <button type="submit" className="">Create New Post</button>
         </form>
             <button onClick={()=>this.refresh()}>Cancel</button>
         </div> );

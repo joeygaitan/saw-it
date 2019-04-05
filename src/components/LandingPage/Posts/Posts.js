@@ -68,21 +68,21 @@ class Posts extends Component {
         })
     }
     render() {
-        console.log(this.state.posts, this.props.posts)
+        console.log(this.props.posts)
         return ( 
             <div>
                 <Header username={this.state.username}/>
                 <div className="container">
                 <div className='buttonContainer'>
                 <button className="latestButton">Latest Posts</button>
-                <button className="addButton" onClick={()=>this.addNewPost()}>Add Post</button>
+                <button className="addButton" onClick={()=>this.addNewPost()}>{this.state.addPost ? "Cancel Adding Post" : "Add Post"}</button>
                 {this.state.addPost ? <AddPost addPost={this.props.addPost}/>: null}
                 </div>
                 
                     {this.props.posts.map((post,index)=>{
                         return (<div className='item'>
                         <img src={post.img_url}/>
-                        <h1>{post.title} | <img src="../svgs/up-arrow.svg" onClick={()=>this.props.increaseVote(post.id)}/> {post.votes} {post.votes >= 0 ?<img src="../../../images/svgs/arrow-down-sign-to-navigate.svg" onClick={()=>this.props.descreaseVote(post.id)}/>: null}</h1>
+                        <h1>{post.title} | <img src="../svgs/up-arrow.svg" onClick={()=>this.props.increaseVote(post.id)}/> {post.votes} {post.votes > 0 ?<img src="../../../images/svgs/arrow-down-sign-to-navigate.svg" onClick={()=>this.props.descreaseVote(post.id)}/>: null}</h1>
                         <p>{post.content}</p>
                         <ul>
                         {this.props.comments.map((comment, ind) => { return ind === index? <li>{comment.content}</li> : null })}

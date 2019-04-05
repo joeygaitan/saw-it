@@ -2,7 +2,7 @@
 
 
 
-This project is using multiple packages such as axios, react-redux, redux-logger, redux-thunk, and redux. These all use a central store which is like a global state that can access and change the store through props.
+This project is using multiple packages such as moment, react-router-dom, axios, react-redux, redux-logger, redux-thunk, and redux. These all use a central store which is like a global state that can access and change the store through props.
 
 
 

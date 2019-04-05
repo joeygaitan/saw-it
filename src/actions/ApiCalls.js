@@ -48,7 +48,7 @@ export const increaseVote = (id) => {
 
 export const descreaseVote = (id) => {
     return (dispatch) => {
-        axios.get(`http://localhost:8082/api/posts/votes/increase/${id}`)
+        axios.get(`http://localhost:8082/api/posts/votes/decrease/${id}`)
         .then(response=>{
             dispatch(getPosts())
         })

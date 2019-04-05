@@ -13,8 +13,7 @@ class Posts extends Component {
         this.state = { 
             currentDate: new Date(),
             Admin: false,
-            username: '',
-            posts: [...this.props.posts],
+            username: '', 
             addPost: false,
             showMessages: false,
             commentBody:{
@@ -62,27 +61,28 @@ class Posts extends Component {
     }
     
     addNewPost = () =>{
-        console.log('in Here')
+        console.log('here')
         let value = this.state.addPost
         this.setState({
             addPost: !value
         })
     }
     render() {
+        console.log(this.state.posts, this.props.posts)
         return ( 
             <div>
                 <Header username={this.state.username}/>
                 <div className="container">
                 <div className='buttonContainer'>
                 <button className="latestButton">Latest Posts</button>
-                <button className="addButton" ifClicked={()=>this.addNewPost()}>Add Post</button>
+                <button className="addButton" onClick={()=>this.addNewPost()}>Add Post</button>
                 {this.state.addPost ? <AddPost addPost={this.props.addPost}/>: null}
                 </div>
                 
-                    {this.state.posts.map((post,index)=>{
+                    {this.props.posts.map((post,index)=>{
                         return (<div className='item'>
                         <img src={post.img_url}/>
-                        <h1>{post.title} | <img src="../../../images/svgs/up-arrow.svg" onClick={()=>this.props.increaseVote(index)}/> {post.votes} {post.votes >= 0 ?<img src="../../../images/svgs/arrow-down-sign-to-navigate.svg" onClick={()=>this.props.descreaseVote(index)}/>: null}</h1>
+                        <h1>{post.title} | <img src="../svgs/up-arrow.svg" onClick={()=>this.props.increaseVote(post.id)}/> {post.votes} {post.votes >= 0 ?<img src="../../../images/svgs/arrow-down-sign-to-navigate.svg" onClick={()=>this.props.descreaseVote(post.id)}/>: null}</h1>
                         <p>{post.content}</p>
                         <ul>
                         {this.props.comments.map((comment, ind) => { return ind === index? <li>{comment.content}</li> : null })}

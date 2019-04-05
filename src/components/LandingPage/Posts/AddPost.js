@@ -13,6 +13,7 @@ class AddPost extends Component {
     }
 
     change = (event) =>{
+        console.log(event.target.value)
         this.setState({
            [event.target.name] : event.target.value
         })
@@ -23,6 +24,10 @@ class AddPost extends Component {
         this.props.AddPost(this.state)
       
         this.props.history.push('/posts')
+      }
+
+      refresh = () => {
+        this.props.history.push('/posts') 
       }
       
 
@@ -36,21 +41,21 @@ class AddPost extends Component {
                             <input name ="author" type="text" className="" value={this.state.author} onChange={this.onUpdate}></input>
                         </div>
                         <div className="">
-                            <label>SubTitle</label>
-                            <input name ="subtitle" type="text" className="" value={this.state.subtitle} onChange={this.onUpdate}></input>
+                            <label>content</label>
+                            <input name ="content" type="text" className="" value={this.state.content} onChange={this.onUpdate}></input>
                         </div>
                         <div className="">
-                            <label>author</label>
-                            <input name ="author" type="text" className="" value={this.state.subtitle} onChange={this.onUpdate}></input>
+                            <label>title</label>
+                            <input name ="title" type="text" className="" value={this.state.title} onChange={this.onUpdate}></input>
                         </div>
                         <div className="">
                             <label>published</label>
                             <input name ="published" type="text" className="" value={this.state.published} onChange={this.onUpdate}></input>
                         </div>
         </form>
-            <Link to='/books'><button>Cancel</button></Link>
+            <button onClick={()=>this.refresh()}>Cancel</button>
         </div> );
     }
 }
  
-export default AddPost;
+export default withRouter(AddPost);

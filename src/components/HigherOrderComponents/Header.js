@@ -16,7 +16,7 @@ class Header extends Component {
 
     render() { 
         return (
-        <div class="topnav">
+        <div className="topnav">
             <h1>Welcome, {this.props.username}!</h1>
             
             <p onClick={this.logout}>Logout</p>

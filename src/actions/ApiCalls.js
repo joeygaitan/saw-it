@@ -25,6 +25,7 @@ export const addPost = (body) => {
     return (dispatch) => {
         axios.post("http://localhost:8082/api/posts", body)
         .then(response=>{
+            console.log(response);
             dispatch(getPosts())
         })
         .catch(error=>{

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import '../../../css/AddPost.css'
 import { withRouter, Link } from 'react-router-dom';
 
 class AddPost extends Component {
@@ -13,20 +14,27 @@ class AddPost extends Component {
          }
     }
 
+    componentDidMount = () => {
+        this.ifEmpty()
+    }
+
     onUpdate = (event) =>{
         this.setState({
            [event.target.name] : event.target.value
         })
+
+        this.ifEmpty()
       }
       
       onSubmit = (event) => {
         event.preventDefault();
-        this.props.AddPost(this.state)
+        this.props.addPost(this.state)
       
         this.props.history.push('/posts')
       }
 
       ifEmpty = () => {
+          console.log("I worked")
         if(this.state.author === "" || this.state.content === '' || this.state.title === '' || this.state.img_url === ''){
             
         }else{
@@ -34,6 +42,14 @@ class AddPost extends Component {
                 empty: false
             })
         }
+      }
+
+      OnceLike = () => {
+
+      }
+
+      OnceDislike = () => {
+
       }
 
     render() { 
@@ -57,7 +73,7 @@ class AddPost extends Component {
                                 <label>Image Url</label>
                                 <input name ="img_url" type="text" className="" value={this.state.img_url} onChange={this.onUpdate}></input>
                             </div>
-                            {this.state.empty ? <button className="clearedOut" disabled>Create New Post</button> : <button type="submit" className="">Create New Post</button>}
+                            {this.state.empty ? <button className="clearedOut" disabled>Create New Post</button> : <button type="submit" className="submitButton">Create New Post</button>}
             </form>
         </div> );
     }

@@ -26,7 +26,7 @@ class AddPost extends Component {
         this.ifEmpty()
       }
       
-      onSubmit = (event) => {
+      updatedSubmit = (event) => {
         event.preventDefault();
         this.props.addPost(this.state)
       
@@ -34,7 +34,6 @@ class AddPost extends Component {
       }
 
       ifEmpty = () => {
-          console.log("I worked")
         if(this.state.author === "" || this.state.content === '' || this.state.title === '' || this.state.img_url === ''){
             
         }else{

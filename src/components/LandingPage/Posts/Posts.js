@@ -16,9 +16,7 @@ class Posts extends Component {
             username: '', 
             addPost: false,
             showMessages: false,
-            commentBody:{
-                body:""
-            }
+            comment: ""
          }
     }
 
@@ -56,12 +54,20 @@ class Posts extends Component {
         })
     }
 
-    addComments = (comment) => {
-
+    onUpdate = (event) =>{
+        this.setState({
+           [event.target.name] : event.target.value
+        })
     }
     
+    addComment = (event, id) => {
+        event.preventDefault();
+        this.props.addComment(this.state.comment)
+      
+        this.props.history.push('/posts')
+    }
+
     addNewPost = () =>{
-        console.log('here')
         let value = this.state.addPost
         this.setState({
             addPost: !value
@@ -69,6 +75,7 @@ class Posts extends Component {
     }
 
     render() {
+        console.log(this.props)
         return ( 
             <div>
                 <Header username={this.state.username}/>
@@ -84,11 +91,18 @@ class Posts extends Component {
                         <img src={post.img_url}/>
                         <h1>{post.title} | <img src="../svgs/up-arrow.svg" onClick={()=>this.props.increaseVote(post.id)}/> {post.votes} {post.votes > 0 ?<img src="../../../images/svgs/arrow-down-sign-to-navigate.svg" onClick={()=>this.props.descreaseVote(post.id)}/>: null}</h1>
                         <p>{post.content}</p>
+                        <form className="form" onSubmit={this.addComment}>
+                            <div className="">
+                                <label className="">Add Comment</label>
+                                <input name ="comment" type="text" className="" value={this.state.comment} onChange={this.onUpdate}></input>
+                            </div>
+                        </form>
+                        <button type="submit" className="submitButton">Add Comment</button>
                         <ul>
                         {this.props.comments.map((comment, ind) => { return ind === index? <li>{comment.content}</li> : null })}
                         </ul>
                         </div>)
-                    })}
+                    }).reverse()}
                 </div>
             </div>
          );

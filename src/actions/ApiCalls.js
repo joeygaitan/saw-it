@@ -22,12 +22,9 @@ export const getPosts = () => {
 }
 
 export const addPost = (body) => {
-    console.log("hello")
     return (dispatch) => {
-        console.log("hello")
         axios.post("http://localhost:8082/api/posts", body)
         .then(response=>{
-            console.log(response);
             dispatch(getPosts())
         })
         .catch(error=>{

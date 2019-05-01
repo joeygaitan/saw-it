@@ -32,7 +32,7 @@ class AddPost extends Component {
       
         this.props.history.push('/posts')
       }
-
+      
       ifEmpty = () => {
         if(this.state.author === "" || this.state.content === '' || this.state.title === '' || this.state.img_url === ''){
             
@@ -43,16 +43,7 @@ class AddPost extends Component {
         }
       }
 
-      OnceLike = () => {
-
-      }
-
-      OnceDislike = () => {
-
-      }
-
-    render() { 
-        console.log(this.props)
+    render() {
         return ( 
         <div className="">
             <form className="form" onSubmit={this.updatedSubmit}>

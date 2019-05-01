@@ -73,7 +73,7 @@ export const getComments = () => {
     }
 }
 
-export const addComment = (body) => {
+export const addComment = (body, id) => {
     return (dispatch) => {
         axios.post(`http://localhost:8082/api/comments`, body)
         .then(response=>{

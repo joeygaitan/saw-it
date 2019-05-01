@@ -34,7 +34,7 @@ class AddPost extends Component {
       }
       
       ifEmpty = () => {
-        if(this.state.author === "" || this.state.content === '' || this.state.title === '' || this.state.img_url === ''){
+        if(this.state.author === '' || this.state.content === '' || this.state.title === '' || this.state.img_url === ''){
             
         }else{
             this.setState({

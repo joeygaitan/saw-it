@@ -60,13 +60,6 @@ class Posts extends Component {
            [event.target.name] : event.target.value
         })
     }
-    
-    addComment = (event, id) => {
-        event.preventDefault();
-        this.props.addComment(this.state.comment)
-      
-        this.props.history.push('/posts')
-    }
 
     addNewPost = () =>{
         let value = this.state.addPost
@@ -76,7 +69,7 @@ class Posts extends Component {
     }
 
     render() {
-        
+        console.log(this.props)
         return ( 
             <div>
                 <Header username={this.state.username}/>
@@ -92,8 +85,15 @@ class Posts extends Component {
                         <img src={post.img_url}/>
                         <h1>{post.title} | <img src="../svgs/up-arrow.svg" onClick={()=>this.props.increaseVote(post.id)}/> {post.votes} {post.votes > 0 ?<img src="../../../images/svgs/arrow-down-sign-to-navigate.svg" onClick={()=>this.props.descreaseVote(post.id)}/>: null}</h1>
                         <p>{post.content}</p>
-                        
-                        <br/>
+
+                        <form className="form" onSubmit={this.addComment}>  
+                            <div className="">
+                                    <label>Comment</label>
+                                    <input name ="comment" type="text" className="" value={this.state.comment} onChange={this.onUpdate}></input>
+
+                                    <button className="button">Submit</button>
+                            </div>
+                        </form>
 
                         {this.props.comments.map((comment, ind) => { return ind === index? (
                         <div>
